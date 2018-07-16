@@ -17,3 +17,15 @@ class RequiredParams(object):
       return func(*args, **kwargs)
       
     return authorize_and_call
+  
+class ValidValues(object):
+  def __init__(self, valid_values, *args, **kwargs):
+    self.valid_values = valid_values
+  
+  def __call__(self, func):
+    def authorize_and_call(obj, value, *args, **kwargs):
+      if value != None and not value in self.valid_values:
+        raise ValueError('Value not in %s' % (self.valid_values))
+      return func(obj, value, *args, **kwargs)
+      
+    return authorize_and_call

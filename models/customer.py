@@ -47,7 +47,6 @@ class Customer(BaseModel):
     self.dateOfBirth = dateOfBirth
     self.companyName = companyName
     self.vatId = vatId
-    #self.addresses = addresses
     if (addresses != None):
       _addresses = []
       for addr in addresses:
@@ -64,7 +63,11 @@ class Customer(BaseModel):
     self.billingAddressIds = billingAddressIds
     self.isEmailVerified = isEmailVerified
     self.externalId = externalId
-    self.customerGroup = customerGroup
+    if (customerGroup != None):
+      if (type(customerGroup) == type({})):
+        self.customerGroup = Reference(**customerGroup)
+      else:
+        self.customerGroup = customerGroup
     #self.custom = custom
     self.locale = locale
     self.lastMessageSequenceNumber = lastMessageSequenceNumber
