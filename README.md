@@ -68,7 +68,7 @@ testingcustomer.delete(force=True)
 ### Helpers
 Some resources, such as Carts, Customers, Orders, etc. has their own helpers classes that provides some actions out of the scope of a repository.
 ```
-from helpers.customer import CustomerHelper
+from commercetools.helpers.customer import CustomerHelper
 
 customer_helper = CustomerHelper(client)
 
