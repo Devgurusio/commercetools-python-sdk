@@ -30,7 +30,7 @@ class BaseModel:
     if self.id == None:
       self.__dict__.update(self._repository.create(self).__dict__)
     else:
-      self.__dict__.update(self._repository.update(self).__dict__)
+      self.__dict__.update(self._repository.update(self, force).__dict__)
     return self
   
   @ModelPersisted()

@@ -3,7 +3,7 @@ from factories.customer import CustomerFactory
 from connection.results.customersigninresult import CustomerSignInResult
 from .actions.customer import CustomerActions
 from decorators.repositories import RepositoryConnected
-from decorators.decorators import RequiredParams
+#from decorators.decorators import RequiredParams
 from requests.exceptions import HTTPError
 
 class CustomerRepository(BaseRepository):

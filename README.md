@@ -41,7 +41,7 @@ testingcustomer = customer_repository.get(key='testingcustomer')
 # Update a customer
 testingcustomer.firstName = 'Myname'
 customer_repoisitory.update(testingcustomer, old_obj=customer, force=True)
-# if the old customer is not provided (second parameter), the update method will peform an find and update
+# if the old customer is not provided (second parameter), the update method will peform a find and update
 # force parameter handles concurrent modification errors. Note that by default this attribute is set to false.
 
 # Delete a customer
