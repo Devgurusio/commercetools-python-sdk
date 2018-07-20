@@ -4,7 +4,7 @@ import re
 
 class CustomerActions(BaseActions):
   @classmethod
-  def _regular_attribute_actions(cls, diff: dict, obj):
+  def _regular_attribute_actions(cls, diff: dict, obj, old_obj = None):
     actions = []
     for root_attr in diff:
         attr = root_attr.split('.')[1]
@@ -23,7 +23,7 @@ class CustomerActions(BaseActions):
     return actions
   
   @classmethod
-  def _iterable_attribute_add_actions(cls, diff: dict, obj):
+  def _iterable_attribute_add_actions(cls, diff: dict, obj, old_obj = None):
     actions = []
     for root_attr in diff:
         attr = root_attr.split('.')[1]
@@ -41,7 +41,7 @@ class CustomerActions(BaseActions):
     return actions
 
   @classmethod
-  def _iterable_attribute_remove_actions(cls, diff: dict, obj):
+  def _iterable_attribute_remove_actions(cls, diff: dict, obj, old_obj = None):
     actions = []
     for root_attr in diff:
         attr = root_attr.split('.')[1]
