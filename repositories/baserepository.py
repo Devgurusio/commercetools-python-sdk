@@ -64,6 +64,8 @@ class BaseRepository:
                 return self.client.post(path='%s/%s' % (self._endpoint, id), json={'version': version, 'actions': actions}).json()
             elif key:
                 return self.client.post(path='%s/key=%s' % (self._endpoint, key), json={'version': version, 'actions': actions}).json()
+            else:
+                raise Exception('Please, provide id or key')
         except HTTPError as error:
             if force and error.response.status_code == 409:
                 _obj = self.get(id, key)
@@ -75,7 +77,7 @@ class BaseRepository:
         if old_obj is None:
             old_obj = self.get(obj.id)
         actions = self._actions_module.get_actions(old_obj, obj)
-        return self.new(**self._update(actions=actions, id=obj.id, version=obj.version, force=force))
+        return self.new(**self._update(actions=actions, id=obj.id, key=obj.key, version=obj.version, force=force))
 
     @RepositoryConnected()
     def delete(self, obj=None, id: str = None, key: str = None, version: int = None, data_erasure=False, force=True):
