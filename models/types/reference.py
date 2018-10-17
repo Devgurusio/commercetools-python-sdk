@@ -51,9 +51,7 @@ class Reference(BaseType):
 
     @obj.setter
     def obj(self, value):
-        if (self.typeId is None):
-            self._obj = value
-        elif isinstance(obj, dict):
+        if self.typeId is not None and isinstance(obj, dict):
             model = getattr(models, _reference_types[self.typeId])
             self._obj = model(**obj)
         else:
