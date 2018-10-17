@@ -13,27 +13,30 @@ class ShippingRatePriceTier(BaseType):
     score: float  # For CartScore
     priceFunction: PriceFunction
 
-    _types = ['CartValue', 'CartClassification', 'CartScore']
+    _shippingRatePriceTier_types = [
+        'CartValue', 'CartClassification', 'CartScore']
 
-    def __init__(self, type: str = None, freeAbove: Money = None, isMatching: bool = None):
+    def __init__(self, type: str = None, isMatching: bool = None, price: Money = None, minimumCentAmount: float = None, value: str = None, score: float = None, priceFunction: PriceFunction = None):
         self.type = type
-
+        self.isMatching = isMatching
         if isinstance(price, dict):
             self.price = Money(**price)
         else:
             self.price = price
-        if isinstance(freeAbove, dict):
-            self.freeAbove = Money(**freeAbove)
+        self.minimumCentAmount = minimumCentAmount
+        self.value = value
+        self.score = score
+        if isinstance(priceFunction, dict):
+            self.priceFunction = PriceFunction(**priceFunction)
         else:
-            self.freeAbove = freeAbove
-        self.isMatching = isMatching
+            self.priceFunction = priceFunction
 
     @property
     def type(self):
         return self._type
 
     @type.setter
-    @ValidValues(_types)
+    @ValidValues(_shippingRatePriceTier_types)
     def type(self, value):
         self._type = value
 

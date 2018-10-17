@@ -10,4 +10,8 @@ class Reference(BaseType):
     def __init__(self, typeId: str, id: str, obj: BaseRepository = None):
         self.typeId = typeId
         self.id = id
-        self.obj = obj
+        if obj is not None:
+            if isinstance(obj, dict):
+                self.obj = BaseRepository(**obj)
+            else:
+                self.obj = obj

@@ -2,6 +2,7 @@ from .basemodel import BaseModel
 from .customer_group import CustomerGroup
 from .types.address import Address
 from .types.reference import Reference
+from .types.custom_fields import CustomFields
 from datetime import datetime
 from decorators.models import ModelPersisted, ModelRepository
 from typing import List
@@ -28,13 +29,13 @@ class Customer(BaseModel):
     isEmailVerified: bool
     externalId: str
     customerGroup: Reference
-    # custom - CustomFields - Optional
+    custom: CustomFields
     locale: str
     lastMessageSequenceNumber: int
 
     def __init__(self, customerNumber: str = None, key: str = None, email: str = None, password: str = None, firstName: str = None, lastName: str = None, middleName: str = None, title: str = None, salutation: str = None,
                  dateOfBirth: datetime = None, companyName: str = None, vatId: str = None, addresses: List[Address] = None, defaultShippingAddressId: str = None, shippingAddressIds: List[str] = None, defaultBillingAddressId: str = None,
-                 billingAddressIds: List[str] = None, isEmailVerified: bool = None, externalId: str = None, customerGroup: Reference = None, custom=None, locale: str = None, lastMessageSequenceNumber: int = None, **kwargs):
+                 billingAddressIds: List[str] = None, isEmailVerified: bool = None, externalId: str = None, customerGroup: Reference = None, custom: CustomFields =None, locale: str = None, lastMessageSequenceNumber: int = None, **kwargs):
         super().__init__(**kwargs)
         self.customerNumber = customerNumber
         self.key = key
@@ -69,7 +70,11 @@ class Customer(BaseModel):
                 self.customerGroup = Reference(**customerGroup)
             else:
                 self.customerGroup = customerGroup
-        # self.custom = custom
+        if custom is not None:
+            if isinstance(custom, dict):
+                self.custom = CustomFields(**custom)
+            else:
+                self.custom = custom
         self.locale = locale
         self.lastMessageSequenceNumber = lastMessageSequenceNumber
 

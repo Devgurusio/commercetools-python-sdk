@@ -9,7 +9,7 @@ class BaseModel:
     createdAt: datetime
     lastModifiedAt: datetime
 
-    def __init__(self, id: str = None, version: str = None, createdAt: datetime = None, lastModifiedAt: datetime = None, _repository=None, _helper=None):
+    def __init__(self, id: str = None, version: str = None, createdAt: datetime = None, lastModifiedAt: datetime = None, _repository=None, _helper=None, **kwargs):
         self.id = id
         self.version = version
         self.createdAt = createdAt

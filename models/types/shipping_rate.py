@@ -22,7 +22,7 @@ class ShippingRate(BaseType):
             _tiers = []
             for tier in tiers:
                 if isinstance(tier, dict):
-                    _tiers.append(Address(**tier))
+                    _tiers.append(ShippingRatePriceTier(**tier))
                 else:
                     _tiers.append(tier)
             self.tiers = _tiers
