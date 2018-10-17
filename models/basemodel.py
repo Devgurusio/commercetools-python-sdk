@@ -36,9 +36,9 @@ class BaseModel:
         return self
 
     @ModelPersisted()
-    def delete(self, force=False):
+    def delete(self, data_erasure=False, force=False):
         self.__dict__.update(self._repository.delete(
-            self, force=force).__dict__)
+            self, data_erasure=data_erasure, force=force).__dict__)
         return self
 
     def _get_serialized_value(self, obj):
