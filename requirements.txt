@@ -4,5 +4,5 @@ idna==2.6
 oauthlib==2.0.7
 requests==2.20.0
 requests-oauthlib==0.8.0
-urllib3==1.24.2
+urllib3==1.26.5
 deepdiff==3.3.0
